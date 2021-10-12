@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.cloud.context.config.annotation.RefreshScope;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -11,12 +12,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class WorkServiceController {
 
-    @Value("${work.value}")
-    private String configStr;
+    @Value("${userinfo.name}")
+    private String configName;
 
-    @GetMapping("/work")
-    public String getWork(){
-        return configStr;
+    @Value("${userinfo.age}")
+    private String configAge;
+
+    @Value("${userinfo.phone}")
+    private String configTel;
+
+    @GetMapping(value="/work/{username}")
+    public String getWork(@PathVariable("username") String username){
+        String first = "Hello, " + configName + "!\n\n";
+        String second = "I Check your info\n\n your age : " + configAge + ",\n your phoneNumber : " + configTel;
+        String third = "\n\nRight?";
+        return first + second + third;
     }
 
 }
