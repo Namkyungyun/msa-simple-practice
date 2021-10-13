@@ -11,12 +11,21 @@ import org.springframework.web.bind.annotation.RestController;
 @RefreshScope
 public class WorkServiceController {
 
-    @Value("${work.value}")
-    private String configStr;
+    @Value("${userinfo.name}")
+    private String configName;
+
+    @Value("${userinfo.age}")
+    private String configAge;
+
+    @Value("${userinfo.phone}")
+    private String configTel;
 
     @GetMapping("/work")
     public String getWork(){
-        return configStr;
+        String first = "Hello, {" + configName + "}!\n\n";
+        String second = "I Check your info\n\n your age : {" + configAge + "},\n your phoneNumber : {" + configTel + "}";
+        String third = "\n\nRight?";
+        return first + second + third;
     }
 
 }

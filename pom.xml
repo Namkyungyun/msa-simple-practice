@@ -14,8 +14,10 @@
         <module>eureka-server</module>
         <module>memberservice</module>
         <module>worksevice</module>
+        <module>zuul-server-2</module>
 
     </modules>
 
 
 </project>
+

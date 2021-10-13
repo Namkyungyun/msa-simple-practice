@@ -13,9 +13,11 @@ eureka:
 spring:
   application:
     name: zuulservice
-  profiles:
-    active:
-      default
+  cloud:
+    config:
+      uri: http://localhost:9999
+
+
 
 logging:
   level:
@@ -27,7 +29,8 @@ management:
   endpoints:
     web:
       exposure:
-        include: routes
+        include: routes, refresh
+
 
 zuul:
   ignored-services: config-dev, workservice
